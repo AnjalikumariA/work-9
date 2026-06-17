@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AÉTHYR | Haute Couture & Ready-To-Wear</title>
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Premium Serif Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Modern Complex CSS Engine */
+        :root {
+            --bg-deep: #050505;
+            --bg-surface: #0f0f0f;
+            --bg-card: #141414;
+            --accent-gold: #d4af37;
+            --accent-bronze: #aa7c11;
+            --text-pure: #ffffff;
+            --text-muted: #8e8e8e;
+            --text-dark: #111111;
+            --transition-main: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --glass-blur: rgba(10, 10, 10, 0.75);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--bg-deep);
+            color: var(--text-pure);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar Dynamic Track */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-deep); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-gold); border-radius: 4px; }
+
+        /* Premium Floating Navigation Header */
+        .header-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.8rem 4%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 500;
+            background: linear-gradient(to bottom, rgba(5,5,5,0.95), transparent);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.03);
+            transition: var(--transition-main);
+        }
+
+        .header-nav.sticky {
+            padding: 1rem 4%;
+            background: var(--bg-deep);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .brand-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 6px;
+            color: var(--text-pure);
+            text-decoration: none;
+            background: linear-gradient(45deg, #fff, var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links-wrapper {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links-wrapper a {
+            color: var(--text-pure);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            font-weight: 400;
+            position: relative;
+            transition: var(--transition-main);
+        }
+
+        .nav-links-wrapper a:hover { color: var(--accent-gold); }
+
+        .action-triggers {
+            display: flex;
+            gap: 1.8rem;
+            align-items: center;
+        }
+
+        .action-triggers i {
+            font-size: 1.2rem;
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition-main);
+        }
+
+        .action-triggers i:hover { transform: scale(1.15); color: var(--accent-gold); }
+
+        .bag-counter-badge {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: var(--accent-gold);
+            color: var(--text-dark);
+            font-size: 0.65rem;
+            font-weight: 700;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Hero Cinema Section */
+        .cinema-hero {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 0 6%;
+            overflow: hidden;
+        }
+
+        .hero-carousel-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background: linear-gradient(to right, rgba(5,5,5,0.85) 30%, rgba(5,5,5,0.2)),
+                        url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            animation: panHero 25s infinite alternate ease-in-out;
+        }
+
+        @keyframes panHero {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); background-position: top center; }
+        }
+
+        .hero-content-box {
+            position: relative;
+            z-index: 5;
+            max-width: 750px;
+        }
+
+        .hero-content-box span {
+            font-family: 'Cinzel', serif;
+            color: var(--accent-gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content-box h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 4.5rem;
+            font-weight: 400;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+        }
+
+        .premium-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 1.2rem 3rem;
+            border: 1px solid var(--accent-gold);
+            color: var(--text-pure);
+            background: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition-main);
+        }
+
+        .premium-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-gold);
+            z-index: -1;
+            transition: var(--transition-main);
+        }
+
+        .premium-btn:hover { color: var(--text-dark); font-weight: 600; }
+        .premium-btn:hover::before { left: 0; }
+
+        /* Editorial Multi-Image Showcase Runway Grid */
+        .editorial-runway { padding: 6rem 4%; background: var(--bg-surface); }
+        .runway-masonry {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .runway-item {
+            position: relative;
+            overflow: hidden;
+            height: 380px;
+            border: 1px solid rgba(255,255,255,0.02);
+        }
+
+        .runway-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(30%);
+            transition: var(--transition-main);
+        }
+
+        .runway-item:hover img { transform: scale(1.08); filter: grayscale(0%); }
+        .runway-overlay {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 2rem 1.5rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: var(--transition-main);
+        }
+
+        .runway-item:hover .runway-overlay { opacity: 1; transform: translateY(0); }
+
+        /* Dynamic Working Apparel Boutique Section */
+        .boutique-store { padding: 8rem 4%; }
+        .section-header-meta { text-align: center; margin-bottom: 5rem; }
+        .section-header-meta h2 { font-family: 'Cinzel', serif; font-size: 2.8rem; letter-spacing: 4px; margin-bottom: 1rem; }
+        .section-header-meta p { color: var(--text-muted); font-size: 0.95rem; }
+
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            padding-bottom: 6px;
+            border-bottom: 1px solid transparent;
+            transition: var(--transition-main);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            color: var(--accent-gold);
+            border-bottom: 1px solid var(--accent-gold);
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .apparel-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.03);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: var(--transition-main);
+        }
+
+        .apparel-card:hover { transform: translateY(-5px); border-color: rgba(214, 175, 55, 0.3); }
+        
+        .card-img-frame {
+            position: relative;
+            aspect-ratio: 3 / 4;
+            overflow: hidden;
+            background: #111;
+        }
+
+        .card-img-frame img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition-main); }
+        .apparel-card:hover .card-img-frame img { transform: scale(1.05); }
+
+        .card-details-box { padding: 1.5rem; text-align: center; margin-top: auto; }
+        .card-details-box h3 { font-size: 1rem; font-weight: 400; letter-spacing: 1px; margin-bottom: 0.5rem; }
+        .card-details-box .price-tag { color: var(--accent-gold); font-weight: 600; margin-bottom: 1.2rem; }
+
+        .add-bag-action {
+            width: 100%;
+            background: transparent;
+            border: 1px solid #333;
+            color: var(--text-pure);
+            padding: 0.9rem;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: var(--transition-main);
+        }
+
+        .add-bag-action:hover { background: var(--text-pure); color: var(--text-dark); border-color: var(--text-pure); }
+
+        /* Hyper-Interactive Gamified Runway Engine Section */
+        .gamified-atelier {
+            background: linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.95)),
+                        url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            padding: 8rem 4%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-top: 1px solid rgba(212,175,55,0.1);
+            border-bottom: 1px solid rgba(212,175,55,0.1);
+        }
+
+        .interactive-game-module {
+            width: 100%;
+            max-width: 650px;
+            background: var(--bg-card);
+            border: 1px solid rgba(212,175,55,0.15);
+            border-radius: 4px;
+            padding: 3.5rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+            position: relative;
+        }
+
+        .game-screen-layer { display: none; text-align: center; }
+        .game-screen-layer.visible-active { display: block; animation: layerSlideIn 0.5s ease forwards; }
+
+        @keyframes layerSlideIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .game-screen-layer h3 { font-family: 'Cinzel', serif; font-size: 1.8rem; margin-bottom: 1.5rem; letter-spacing: 2px; }
+        .game-options-stack { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2.5rem; }
+        
+        .game-select-trigger {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            color: var(--text-pure);
+            padding: 1.2rem;
+            cursor: pointer;
+            border-radius: 2px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-main);
+        }
+
+        .game-select-trigger:hover { border-color: var(--accent-gold); background: #222; padding-left: 1.5rem; }
+        .game-select-trigger i { color: var(--accent-gold); opacity: 0; transition: var(--transition-main); }
+        .game-select-trigger:hover i { opacity: 1; }
+
+        .outfit-display-portal {
+            margin: 2rem 0;
+            border: 1px solid #333;
+            overflow: hidden;
+            aspect-ratio: 4 / 5;
+            max-height: 350px;
+            border-radius: 4px;
+        }
+
+        .outfit-display-portal img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* Sliding E-Commerce Matrix Cart Drawer Overlay */
+        .matrix-cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -460px;
+            width: 460px;
+            height: 100vh;
+            background: var(--glass-blur);
+            backdrop-filter: blur(25px);
+            box-shadow: -15px 0 40px rgba(0,0,0,0.8);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid rgba(212,175,55,0.1);
+            transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .matrix-cart-drawer.reveal-drawer { right: 0; }
+        .drawer-top-banner { padding: 2.5rem 2rem; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; }
+        .drawer-top-banner h3 { font-family: 'Cinzel', serif; font-size: 1.4rem; letter-spacing: 2px; }
+        .exit-drawer-icon { cursor: pointer; font-size: 1.5rem; transition: var(--transition-main); }
+        .exit-drawer-icon:hover { color: var(--accent-gold); transform: rotate(90deg); }
+
+        .drawer-items-scrollpool { flex: 1; overflow-y: auto; padding: 2rem; }
+        
+        .matrix-cart-row {
+            display: flex;
+            gap: 1.2rem;
+            align-items: center;
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .matrix-cart-row img { width: 70px; height: 95px; object-fit: cover; border: 1px solid #222; }
+        .row-meta-details { flex: 1; }
+        .row-meta-details h4 { font-size: 0.95rem; font-weight: 400; margin-bottom: 4px; }
+        .row-meta-details p { color: var(--accent-gold); font-size: 0.9rem; font-weight: 600; }
+
+        .row-quantities { display: flex; align-items: center; gap: 12px; margin-top: 10px; }
+        .row-quantities button { background: #222; border: none; color: #fff; width: 26px; height: 26px; cursor: pointer; transition: var(--transition-main); }
+        .row-quantities button:hover { background: var(--accent-gold); color: #000; }
+
+        .trash-row-trigger { color: #ff4d4d; cursor: pointer; transition: var(--transition-main); }
+        .trash-row-trigger:hover { transform: scale(1.1); }
+
+        .drawer-bottom-checkout { padding: 2.5rem 2rem; border-top: 1px solid rgba(255,255,255,0.05); background: #0a0a0a; }
+        .checkout-pricing-summary { display: flex; justify-content: space-between; font-size: 1.2rem; margin-bottom: 2rem; font-family: 'Cinzel', serif; }
+        
+        .checkout-final-action {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--accent-gold);
+            color: var(--text-dark);
+            border: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition-main);
+        }
+
+        .checkout-final-action:hover { background: #fff; }
+
+        /* Luxury Footer Architecture */
+        footer { background: #030303; padding: 4rem 4% 2rem; border-top: 1px solid #111; text-align: center; }
+        .footer-brand { font-family: 'Cinzel', serif; font-size: 1.8rem; letter-spacing: 8px; margin-bottom: 1.5rem; }
+        .footer-meta { color: var(--text-muted); font-size: 0.8rem; letter-spacing: 1px; }
+
+        @media (max-width: 900px) {
+            .runway-masonry { grid-template-columns: repeat(2, 1fr); }
+            .matrix-cart-drawer { width: 100%; right: -100%; }
+            .nav-links-wrapper { display: none; }
+            .hero-content-box h1 { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Global Navigation -->
+    <header class="header-nav" id="mainHeader">
+        <a href="#" class="brand-logo">AÉTHYR</a>
+        <nav class="nav-links-wrapper">
+            <a href="#hero">Cinematic</a>
+            <a href="#runway">Editorial</a>
+            <a href="#boutique">Boutique</a>
+            <a href="#atelier">Atelier Game</a>
+        </nav>
+        <div class="action-triggers">
+            <i class="fa-solid fa-bag-shopping" id="openBagTrigger">
+                <span class="bag-counter-badge" id="globalCartCounter">0</span>
+            </i>
+        </div>
+    </header>
+
+    <!-- Hero Video/Cinema Entrance -->
+    <section class="cinema-hero" id="hero">
+        <div class="hero-carousel-bg"></div>
+        <div class="hero-content-box">
+            <span>High Fashion Couture // Autumn Winter 2026</span>
+            <h1>Sartorial Poetry Configured For The Modern Sovereign</h1>
+            <a href="#boutique" class="premium-btn">Enter Store Collection <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <!-- Editorial Runway Gallery (10 Images Distributed) -->
+    <section class="editorial-runway" id="runway">
+        <div class="section-header-meta">
+            <h2>The Editorial Lookbook</h2>
+            <p>A visual curation of seasonal design architectural shapes and drapery.</p>
+        </div>
+        <div class="runway-masonry">
+            <div class="runway-item"><img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=500&q=80"><div class="runway-overlay"><h4>Aéthyr Atelier Wrap No. 1</h4></div></div>
+            <div class="runway-item"><img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=500&q=80"><div class="runway-overlay"><h4>Stitch Architecture Blazer</h4></div></div>
+            <div class="runway-item"><img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=500&q=80"><div class="runway-overlay"><h4>Flow Silk Line Layering</h4></div></div>
+            <div class="runway-item"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=500&q=80"><div class="runway-overlay"><h4>Street Minimalist Knit Set</h4></div></div>
+            <div class="runway-item"><img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=500&q=80"><div class="runway-overlay"><h4>Luxury Trench Silhouette</h4></div></div>
+            <div class="runway-item"><img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=500&q=80"><div class="runway-overlay"><h4>Avant-Garde Textures</h4></div></div>
+            <div class="runway-item"><img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?auto=format&fit=crop&w=500&q=80"><div class="runway-overlay"><h4>Minimalist Linen Drape</h4></div></div>
+            <div class="runway-item"><img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=500&q=80"><div class="runway-overlay"><h4>Summer Haute Silk Pattern</h4></div></div>
+        </div>
+    </section>
+
+    <!-- Functional Retail Store Section (12 Distinct Buyable Clothes Items) -->
+    <section class="boutique-store" id="boutique">
+        <div class="section-header-meta">
+            <h2>Ready-To-Wear Catalog</h2>
+            <p>Every piece is systematically engineered using ethically-harvested luxury raw materials.</p>
+        </div>
+
+        <div class="filter-tabs">
+            <button class="filter-btn active" onclick="filterCatalog('all')">View All Matrix</button>
+            <button class="filter-btn" onclick="filterCatalog('outerwear')">Outerwear</button>
+            <button class="filter-btn" onclick="filterCatalog('dresses')">Dresses</button>
+        </div>
+
+        <div class="catalog-grid" id="storeCatalogGrid">
+            <!-- 12 Fully Operational Item Cards injected dynamically for supreme speed/cleanliness -->
+        </div>
+    </section>
+
+    <!-- Immersive Gamified Interactive Style Profile Module Section -->
+    <section class="gamified-atelier" id="atelier">
+        <div class="interactive-game-module">
+            
+            <!-- Stage 1: Init -->
+            <div class="game-screen-layer visible-active" id="gameInit">
+                <h3>The Atelier Matrix Engine</h3>
+                <p style="color: var(--text-muted); line-height: 1.6;">Let artificial fashion intuition synthesize your ultimate wardrobe composition. Run your matching protocol now.</p>
+                <div class="game-options-stack">
+                    <button class="premium-btn" style="width:100%; justify-content:center;" onclick="advanceGameStage('gameQ1')">Initialize Synthesis Protocol</button>
+                </div>
+            </div>
+
+            <!-- Stage 2: Prompt 1 -->
+            <div class="game-screen-layer" id="gameQ1">
+                <span style="color:var(--accent-gold); font-size:0.8rem; letter-spacing:2px;">MATRIX STEP 01</span>
+                <h3 style="margin-top:0.8rem;">Select your architectural form palette:</h3>
+                <div class="game-options-stack">
+                    <button class="game-select-trigger" onclick="recordGameInput('structured')">Sharp asymmetric geometry, angular shoulders <i class="fa-solid fa-chevron-right"></i></button>
+                    <button class="game-select-trigger" onclick="recordGameInput('fluid')">Sweeping fluid lines, lightweight unrestrictive drapes <i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Stage 3: Prompt 2 -->
+            <div class="game-screen-layer" id="gameQ2">
+                <span style="color:var(--accent-gold); font-size:0.8rem; letter-spacing:2px;">MATRIX STEP 02</span>
+                <h3 style="margin-top:0.8rem;">Identify your environment ecosystem:</h3>
+                <div class="game-options-stack">
+                    <button class="game-select-trigger" onclick="compileGameFinalResult('minimalist')">Monochrome concrete urbanism and contemporary galleries <i class="fa-solid fa-chevron-right"></i></button>
+                    <button class="game-select-trigger" onclick="recordGameInput('fluid')">Earthy Mediterranean private villas and coastal evenings <i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Stage 4: Visual Resolution / Final Output Display with Custom Style Addition -->
+            <div class="game-screen-layer" id="gameResolution">
+                <span style="color:var(--accent-gold); font-size:0.8rem; letter-spacing:2px;">SYNTHESIS COMPLETE</span>
+                <h3 id="resolvedArchetypeTitle" style="margin-top:0.5rem; color: var(--accent-gold);">The Avant-Garde Structuralist</h3>
+                
+                <div class="outfit-display-portal">
+                    <img id="resolvedOutfitImage" src="" alt="Synthesized Archetype Target Look">
+                </div>
+                
+                <p id="resolvedArchetypeDesc" style="color: var(--text-muted); font-size:0.9rem; line-height:1.6; margin-bottom:2rem;"></p>
+                
+                <div style="display:flex; gap:1rem; justify-content:center;">
+                    <button class="premium-btn" onclick="addSuggestedOutfitToBag()">Buy This Archetype Look</button>
+                    <button class="premium-btn" style="border-color:#333;" onclick="resetAtelierEngine()">Run Again</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Sliding E-Commerce Matrix Cart Drawer Overlay Panel -->
+    <div class="matrix-cart-drawer" id="cartDrawerPanel">
+        <div class="drawer-top-banner">
+            <h3>Your Selected Items Matrix</h3>
+            <i class="fa-solid fa-xmark exit-drawer-icon" id="closeBagTrigger"></i>
+        </div>
+        <div class="drawer-items-scrollpool" id="drawerItemsRowInjector">
+            <!-- Programmatically Injected Rows -->
+        </div>
+        <div class="drawer-bottom-checkout">
+            <div class="checkout-pricing-summary">
+                <span>Calculated Total:</span>
+                <span id="drawerTotalValue">$0.00</span>
+            </div>
+            <button class="checkout-final-action" onclick="executeSecurePaymentMatrix()">Authorize Checkout Order</button>
+        </div>
+    </div>
+
+    <!-- Luxury Tailored Footer System Footer -->
+    <footer>
+        <div class="footer-brand">AÉTHYR</div>
+        <div class="footer-meta">&copy; 2026 AÉTHYR Couture Design Laboratories Inc. All systems functional.</div>
+    </footer>
+
+    <!-- Comprehensive JavaScript Logic Control System Studio Engine Core -->
+    <script>
+        /* 12 Luxury Products Array Database Specification */
+        const PRODUCT_DATABASE = [
+            { id: "A1", name: "Premium Structured Overcoat", price: 420, category: "outerwear", img: "https://images.unsplash.com/photo-1544441893-675973e31985?auto=format&fit=crop&w=600&q=80" },
+            { id: "A2", name: "Asymmetric Silk Wrap Dress", price: 310, category: "dresses", img: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=600&q=80" },
+            { id: "A3", name: "Minimalist Lounge Slate Blazer", price: 280, category: "outerwear", img: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=600&q=80" },
+            { id: "A4", name: "Monochrome Column Maxi Dress", price: 245, category: "dresses", img: "https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=600&q=80" },
+            { id: "A5", name: "Double-Breasted Cashmere Trench", price: 580, category: "outerwear", img: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80" },
+            { id: "A6", name: "Satin Pleated Slip Gown", price: 390, category: "dresses", img: "https://images.unsplash.com/photo-1518887570146-0612132dd618?auto=format&fit=crop&w=600&q=80" },
+            { id: "A7", name: "Architectural Linen Dust Coat", price: 340, category: "outerwear", img: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=600&q=80" },
+            { id: "A8", name: "Ribbed Merino Knit Shift Dress", price: 195, category: "dresses", img: "https://images.unsplash.com/photo-1575936123452-b67c3203c357?auto=format&fit=crop&w=600&q=80" },
+            { id: "A9", name: "Cropped Woolen Blazer Jacket", price: 290, category: "outerwear", img: "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=600&q=80" },
+            { id: "A10", name: "Liquid Metallic Evening Gown", price: 620, category: "dresses", img: "https://images.unsplash.com/photo-1549064442-74d78f26f056?auto=format&fit=crop&w=600&q=80" },
+            { id: "A11", name: "Tailored Fine Twill Overcoat", price: 460, category: "outerwear", img: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80" },
+            { id: "A12", name: "Raw Silk Trapeze Day Dress", price: 275, category: "dresses", img: "https://images.unsplash.com/photo-1554412933-514a83d2f3c8?auto=format&fit=crop&w=600&q=80" }
+        ];
+
+        let shoppingBag = [];
+        let runningGameScore = { structured: 0, fluid: 0, minimalist: 0 };
+        let currentSuggestedItem = null;
+
+        /* Init & Render Platform Elements */
+        window.addEventListener('DOMContentLoaded', () => {
+            renderCatalogGrid(PRODUCT_DATABASE);
+            
+            // Floating Navbar Position Monitor
+            window.addEventListener('scroll', () => {
+                const header = document.getElementById('mainHeader');
+                if (window.scrollY > 60) header.classList.add('sticky');
+                else header.classList.remove('sticky');
+            });
+
+            // Cart Drawer Animation Attachments
+            document.getElementById('openBagTrigger').addEventListener('click', () => {
+                document.getElementById('cartDrawerPanel').classList.add('reveal-drawer');
+            });
+            document.getElementById('closeBagTrigger').addEventListener('click', () => {
+                document.getElementById('cartDrawerPanel').classList.remove('reveal-drawer');
+            });
+        });
+
+        /* Catalog Generator Injection Mapping Engine */
+        function renderCatalogGrid(products) {
+            const container = document.getElementById('storeCatalogGrid');
+            container.innerHTML = '';
+
+            products.forEach(prod => {
+                const card = document.createElement('div');
+                card.classList.add('apparel-card');
+                card.innerHTML = `
+                    <div class="card-img-frame">
+                        <img src="${prod.img}" alt="${prod.name}">
+                    </div>
+                    <div class="card-details-box">
+                        <h3>${prod.name}</h3>
+                        <div class="price-tag">$${prod.price}.00</div>
+                        <button class="add-bag-action" onclick="pushItemToBag('${prod.id}')">Acquire Piece</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterCatalog(category) {
+            // Tab highlight updating
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            if(category === 'all') {
+                renderCatalogGrid(PRODUCT_DATABASE);
+            } else {
+                const filtered = PRODUCT_DATABASE.filter(p => p.category === category);
+                renderCatalogGrid(filtered);
+            }
+        }
+
+        /* E-Commerce State Management Engine Operations */
+        function pushItemToBag(productId) {
+            const product = PRODUCT_DATABASE.find(p => p.id === productId);
+            const entryInBag = shoppingBag.find(item => item.id === productId);
+
+            if(entryInBag) {
+                entryInBag.quantity++;
+            } else {
+                shoppingBag.push({ ...product, quantity: 1 });
+            }
+            synchronizeBagUI();
+            
+            // Autoreveal shopping bag for real feedback interaction confirmation
+            document.getElementById('cartDrawerPanel').classList.add('reveal-drawer');
+        }
+
+        function alterQuantity(id, step) {
+            const match = shoppingBag.find(item => item.id === id);
+            if(match) {
+                match.quantity += step;
+                if(match.quantity <= 0) {
+                    shoppingBag = shoppingBag.filter(item => item.id !== id);
+                }
+            }
+            synchronizeBagUI();
+        }
+
+        function purgeLineItem(id) {
+            shoppingBag = shoppingBag.filter(item => item.id !== id);
+            synchronizeBagUI();
+        }
+
+        function synchronizeBagUI() {
+            const scrollpool = document.getElementById('drawerItemsRowInjector');
+            scrollpool.innerHTML = '';
+            let grossSum = 0;
+            let dynamicCounter = 0;
+
+            shoppingBag.forEach(item => {
+                grossSum += (item.price * item.quantity);
+                dynamicCounter += item.quantity;
+
+                const row = document.createElement('div');
+                row.classList.add('matrix-cart-row');
+                row.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}">
+                    <div class="row-meta-details">
+                        <h4>${item.name}</h4>
+                        <p>$${item.price}.00</p>
+                        <div class="row-quantities">
+                            <button onclick="alterQuantity('${item.id}', -1)">-</button>
+                            <span>${item.quantity}</span>
+                            <button onclick="alterQuantity('${item.id}', 1)">+</button>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-trash-can trash-row-trigger" onclick="purgeLineItem('${item.id}')"></i>
+                `;
+                scrollpool.appendChild(row);
+            });
+
+            document.getElementById('globalCartCounter').textContent = dynamicCounter;
+            document.getElementById('drawerTotalValue').textContent = `$${grossSum}.00`;
+        }
+
+        function executeSecurePaymentMatrix() {
+            if(shoppingBag.length === 0) {
+                alert("Your shopping matrix bag contains no active pieces to authorize.");
+                return;
+            }
+            alert("AÉTHYR Ledger Systems confirmed security passage. Order processed successfully.");
+            shoppingBag = [];
+            synchronizeBagUI();
+            document.getElementById('cartDrawerPanel').classList.remove('reveal-drawer');
+        }
+
+        /* Interactive Atelier Simulation Game Component Engine Mechanics */
+        function advanceGameStage(targetStageId) {
+            document.querySelectorAll('.game-screen-layer').forEach(layer => layer.classList.remove('visible-active'));
+            document.getElementById(targetStageId).classList.add('visible-active');
+        }
+
+        function recordGameInput(typeTag) {
+            runningGameScore[typeTag]++;
+            advanceGameStage('gameQ2');
+        }
+
+        function compileGameFinalResult(typeTag) {
+            runningGameScore[typeTag]++;
+            
+            const textHeader = document.getElementById('resolvedArchetypeTitle');
+            const descriptor = document.getElementById('resolvedArchetypeDesc');
+            const dynamicPortalImg = document.getElementById('resolvedOutfitImage');
+
+            // Synthesizing branch architecture based on matrix data input weights
+            if(runningGameScore.structured >= runningGameScore.fluid) {
+                textHeader.textContent = "The Neo-Sovereign Structuralist";
+                descriptor.textContent = "Your fashion archetype identity reflects razor-sharp definition, structural dominance, and clean, high-contrast armor-like luxury cuts.";
+                dynamicPortalImg.src = "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=600&q=80";
+                currentSuggestedItem = PRODUCT_DATABASE[0]; // Premium Structured Overcoat
+            } else {
+                textHeader.textContent = "The Fluid Ethereal Wanderer";
+                descriptor.textContent = "Your design preference profile isolates organic purity, endless free-flowing lightweight wraps, silk layering, and natural movement expressions.";
+                dynamicPortalImg.src = "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&w=600&q=80";
+                currentSuggestedItem = PRODUCT_DATABASE[1]; // Asymmetric Silk Wrap Dress
+            }
+
+            advanceGameStage('gameResolution');
+        }
+
+        function addSuggestedOutfitToBag() {
+            if(currentSuggestedItem) {
+                pushItemToBag(currentSuggestedItem.id);
+            }
+        }
+
+        function resetAtelierEngine() {
+            runningGameScore = { structured: 0, fluid: 0, minimalist: 0 };
+            currentSuggestedItem = null;
+            advanceGameStage('gameInit');
+        }
+    </script>
+</body>
+</html>
